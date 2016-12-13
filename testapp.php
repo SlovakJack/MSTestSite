@@ -4,8 +4,9 @@
     $apiToken = $_POST["apiToken"];
     $privateKey = $_POST["privateKey"];
     $setUseTinypassAccounts = $_POST["tpAccounts"];
+    
     $sandbox = $_POST["sandbox"];
-
+    
 
 
     /*Include Piano - make sure to use the correct path */
@@ -28,7 +29,13 @@
         <script>
         tp = window["tp"] || [];
         tp.push(["setAid", "<?= $aid ?>"]);
-        tp.push(["setUseTinypassAccounts", <?= $setUseTinypassAccounts ?>]);
+        tp.push(["setUseTinypassAccounts", 
+                 <?php 
+                    if ($setUseTinypassAccounts) { 
+                        echo "true";
+                    } else {
+                        echo "false";
+                    } ?>]);
         tp.push(["init", function() {
         }]);    
         tp.push(["setDebug", true]);
