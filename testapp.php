@@ -57,6 +57,26 @@
         }]);
             
         }
+            
+        function ShowTestTemplate () {
+            
+            document.getElementById('history').innerHTML = "TemplateID:" + document.getElementById('TemplateOnlyID').value + "<br>" + document.getElementById('history').innerHTML;
+                
+            tp.push(["init", function() {
+            tp.template.show({
+                offerId: "fakeOfferID",
+                templateId: document.getElementById('TemplateOnlyID').value, 
+                displayMode: "modal",
+                loginRequired: function() {},
+                close: function() {},
+                complete: function(params) {},
+                customEvent: function(params) {}
+
+                
+            });
+        }]);
+            
+        }
 
         (function(src){var a=document.createElement("script");a.type = "text/javascript";a.async=true;a.src=src;var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a, b)})("//cdn.tinypass.com/api/tinypass.min.js");
         
@@ -80,7 +100,16 @@
                 <td colspan="3">
                     Template ID: <input type="text" id="TemplateID" value="XXX"><br>
                     OfferID: <input type="text" id="OfferID" value="XXX"><br>
-                    <a href="#" onclick='javascript:ShowTestOffer();'>Show template</a>
+                    <a href="#" onclick='javascript:ShowTestOffer();'>Show Offer/Template</a>
+                </td>
+            </tr>
+            <tr>
+            <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    Template ID: <input type="text" id="TemplateOnlyID" value="XXX"><br>
+                    <a href="#" onclick='javascript:ShowTestTemplate();'>Show Template</a>
                 </td>
             </tr>
             <tr>
