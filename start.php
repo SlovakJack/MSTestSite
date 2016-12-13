@@ -23,7 +23,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+  <table width="50%" align="center">
+      <tr>
+        <td>
+      
     <form class="form-horizontal" method="post" action="testapp.php" target="_blank">
         <fieldset>
 
@@ -90,12 +93,14 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="submitButton"></label>
           <div class="col-md-4">
-            <button id="submitButton" name="submitButton" class="btn btn-primary" type="submit">Submit</button>
+            <button id="submitButton" name="submitButton" class="btn btn-info" type="submit">Submit</button>
           </div>
         </div>
         
         </fieldset>
       </form>
-
+          </td>
+      </tr>
+      </table>
     </body>
 </html>

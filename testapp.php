@@ -6,7 +6,11 @@
     $setUseTinypassAccounts = $_POST["tpAccounts"];
     
     $sandbox = $_POST["sandbox"];
-    
+    if ($sandbox) {
+        $environment = "Sandbox";
+    } else {
+        $environment = "Production";
+    }
 
 
     /*Include Piano - make sure to use the correct path */
@@ -22,9 +26,20 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>GETTING STARTED</title>
-        <meta name="description" content="Managed Services test Site">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Managed Services Simple Test Site</title>
+
+        <!-- Bootstrap -->
+        <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
         
         <script>
         tp = window["tp"] || [];
@@ -90,38 +105,105 @@
         </script>
     </head>
     <body>
-        <h1>This is a test page to pop up templates and offers for Managed Services <?= $aid?> Production </h1>
         
-        <table border=1>
+        <table align="center"  width="30%" border=0>
             <tr>
-                <th>Login Info</th>
+                <td>
+                    <h3>AID - <?= $aid?> in <mark class="text-danger"><?= $environment?></mark></h1>
+        
+                </td>
             </tr>
             <tr>
-                <td id="loginActive"><a onclick="tp.user.showLogin({loginSuccess: function() { location.reload(); } });" href="#">Login</a></td>
-                <td id="logoutActive"><a onclick='tp.user.logout();' href=''>Logout</a></td>
+                <td>
+                <form class="form-horizontal">
+                    <fieldset>
+
+                    <!-- Form Name -->
+                    <legend>Login Info</legend>
+
+                    <!-- Button (Double) -->
+                    <div class="form-group">
+                      
+                      <div class="col-md-8 text-center">
+                        <input type="button" id="loginIDbtn" name="loginIDbtn" class="btn btn-info" onclick="tp.user.showLogin({loginSuccess: function() { location.reload(); } });" value="Login">
+                        <input type="button" id="logoutIDbtn" name="logoutIDbtn" onclick='tp.user.logout();' class="btn btn-info" value="Logout"> 
+                      </div>
+                    </div>
+
+                    </fieldset>
+                </form>
+                </td>
             </tr>
-        </table>
-        <br>
-        <table border=1>
             <tr>
-                <td colspan="3">
-                    Template ID: <input type="text" id="TemplateID" value="XXX"><br>
-                    OfferID: <input type="text" id="OfferID" value="XXX"><br>
-                    <a href="#" onclick='javascript:ShowTestOffer();'>Show Offer/Template</a>
+                <td>
+                    
+                    <form class="form-horizontal">
+                        <fieldset>
+
+                            <!-- Form Name -->
+                            <legend>Pop Template and Offer</legend>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="TemplateID">Template ID</label>  
+                              <div class="col-md-4">
+                              <input id="TemplateID" name="TemplateID" type="text" value="XXXXXX" class="form-control input-md">
+                              <span class="help-block">Insert the Template ID</span>  
+                              </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="OfferID">Offer ID</label>  
+                              <div class="col-md-4">
+                              <input id="OfferID" name="OfferID" type="text" value="XXXXXX" class="form-control input-md">
+                              <span class="help-block">Insert the Offer ID</span>  
+                              </div>
+                            </div>
+                            <!-- Button -->
+                            <div class="form-group">
+                              <div class="col-md-4 text-center">
+                                <input onclick='javascript:ShowTestOffer();' id="singlebutton" name="singlebutton" value="Show Offer" class="btn btn-info">
+                              </div>
+                            </div>
+                        </fieldset>
+                    </form>
                 </td>
             </tr>
             <tr>
             <td>&nbsp;</td>
             </tr>
             <tr>
-                <td colspan="3">
-                    Template ID: <input type="text" id="TemplateOnlyID" value="XXX"><br>
-                    <a href="#" onclick='javascript:ShowTestTemplate();'>Show Template</a>
+                <td> 
+                    <form class="form-horizontal">
+                        <fieldset>
+
+                            <!-- Form Name -->
+                            <legend>Pop just the Template</legend>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="TemplateID">Template ID</label>  
+                              <div class="col-md-4">
+                              <input id="TemplateID" name="TemplateOnlyID" type="text" value="XXXXXX" class="form-control input-md">
+                              <span class="help-block">Insert the Template ID</span>  
+                              </div>
+                            </div>
+
+
+                            <!-- Button -->
+                            <div class="form-group">
+                              <div class="col-md-4 text-center">
+                                <input onclick='javascript:ShowTestTemplate();' id="singlebutton" name="singlebutton" value="Show Template" class="btn btn-info">
+                              </div>
+                            </div>
+                        </fieldset>
+                    </form>
                 </td>
             </tr>
             <tr>
                 <td>
-                    History
+                    <legend>History</legend>
                     <div id="history"></div> 
                 </td>
             </tr>
