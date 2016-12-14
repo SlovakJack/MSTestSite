@@ -82,7 +82,7 @@
             
         function ShowTestTemplate () {
             
-            document.getElementById('history').innerHTML = "TemplateID:" + document.getElementById('TemplateOnlyID').value + "<br>" + document.getElementById('history').innerHTML;
+            document.getElementById('history').innerHTML = "TemplateOnlyID:" + document.getElementById('TemplateOnlyID').value + "<br>" + document.getElementById('history').innerHTML;
                 
             tp.push(["init", function() {
             tp.template.show({
@@ -115,23 +115,33 @@
             </tr>
             <tr>
                 <td>
-                <form class="form-horizontal">
-                    <fieldset>
+                    <p class="lead">Using tinypass Accounts: <?= $setUseTinypassAccounts?></p>
+                    
+                    <?php 
+                    if ($setUseTinypassAccounts) { 
+                        ?>
+                            <form class="form-horizontal">
+                                <fieldset>
 
-                    <!-- Form Name -->
-                    <legend>Login Info</legend>
+                                <!-- Form Name -->
+                                <legend>Login Info</legend>
 
-                    <!-- Button (Double) -->
-                    <div class="form-group">
-                      
-                      <div class="col-md-8 text-center">
-                        <input type="button" id="loginIDbtn" name="loginIDbtn" class="btn btn-info" onclick="tp.user.showLogin({loginSuccess: function() { location.reload(); } });" value="Login">
-                        <input type="button" id="logoutIDbtn" name="logoutIDbtn" onclick='tp.user.logout();' class="btn btn-info" value="Logout"> 
-                      </div>
-                    </div>
+                                <!-- Button (Double) -->
+                                <div class="form-group">
 
-                    </fieldset>
-                </form>
+                                  <div class="col-md-8 text-center">
+                                    <input type="button" id="loginIDbtn" name="loginIDbtn" class="btn btn-info" onclick="tp.user.showLogin({loginSuccess: function() { location.reload(); } });" value="Login">
+                                    <input type="button" id="logoutIDbtn" name="logoutIDbtn" onclick='tp.user.logout();' class="btn btn-info" value="Logout"> 
+                                  </div>
+                                </div>
+
+                                </fieldset>
+                            </form>
+                        <?php
+                    } else {
+                        echo "<p class='text-danger'>Publisher uses their own accounts</p>";
+                    } ?>
+                
                 </td>
             </tr>
             <tr>
@@ -183,9 +193,9 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                              <label class="col-md-4 control-label" for="TemplateID">Template ID</label>  
+                              <label class="col-md-4 control-label" for="TemplateOnlyID">Template ID</label>  
                               <div class="col-md-4">
-                              <input id="TemplateID" name="TemplateOnlyID" type="text" value="XXXXXX" class="form-control input-md">
+                              <input id="TemplateOnlyID" name="TemplateOnlyID" type="text" value="XXXXXX" class="form-control input-md">
                               <span class="help-block">Insert the Template ID</span>  
                               </div>
                             </div>
