@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Managed Services Simple Test Site</title>
 
@@ -74,6 +74,20 @@
             <span class="help-block">Choose whether we are using Tinypass Accounts (Mode 5 = True, Mode 2 = False)</span> 
           </div>
         </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="pianoID">Use Piano ID</label>
+          <div class="col-md-4"> 
+            <label class="radio-inline" for="pianoID-0">
+              <input type="radio" name="pianoID" id="pianoID-0" value=1 >
+              True
+            </label> 
+            <label class="radio-inline" for="PianoID-1">
+              <input type="radio" name="pianoID" id="pianoID-1" value=0 checked="checked">
+              False
+            </label>
+            <span class="help-block">If not using Tinypassaccounts - are we using Piano ID?</span> 
+          </div>
+        </div>
         <!-- Multiple Radios (inline) -->
         <div class="form-group">
           <label class="col-md-4 control-label" for="sandbox">Set Sandbox</label>
@@ -100,6 +114,36 @@
         </fieldset>
       </form>
           </td>
+      </tr>
+      <tr>
+        <Td>
+            <form class="form-horizontal" method="post" action="ComposerTest.php" target="_blank">
+        <fieldset>
+            <legend>Composer Test</legend>    
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="composerScript">Composer Script</label>  
+                  <div class="col-md-4">
+                      <textarea id="composerScript" rows=5 name="composerScript" type="textarea" placeholder="placeholder" class="form-control input-md" required=""></textarea>
+                      <span class="help-block">Insert the Composer Script</span>  
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="composerFile">Insert Filename</label>  
+                  <div class="col-md-4">
+                      <input id="composerFile" name="composerFile" type="text" placeholder="placeholder" class="form-control input-md" required="">
+                      <span class="help-block">Insert the Composer Filename</span>  
+                    </div>
+                </div>
+                <!-- Button -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="submitButton"></label>
+                  <div class="col-md-4">
+                    <button id="submitButton" name="submitButton" class="btn btn-info" type="submit">Submit</button>
+                  </div>
+                </div>
+        </fieldset>
+      </form>
+          </Td>
       </tr>
       </table>
     </body>

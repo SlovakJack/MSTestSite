@@ -4,6 +4,7 @@
     $apiToken = $_POST["apiToken"];
     $privateKey = $_POST["privateKey"];
     $setUseTinypassAccounts = $_POST["tpAccounts"];
+    $setUsePianoId = $_POST["pianoID"];
     
     $sandbox = $_POST["sandbox"];
     if ($sandbox) {
@@ -26,7 +27,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Managed Services Simple Test Site</title>
 
@@ -44,13 +45,25 @@
         <script>
         tp = window["tp"] || [];
         tp.push(["setAid", "<?= $aid ?>"]);
-        tp.push(["setUseTinypassAccounts", 
+        //Stop page tracking in AI
+        tp.push(["setTrackPages", false]);
+        <?php 
+        /* Set Tinypass Account as needed */
+        if (($setUseTinypassAccounts) && !($setUsePianoId)) { ?>
+            tp.push(["setUseTinypassAccounts", 
                  <?php 
                     if ($setUseTinypassAccounts) { 
                         echo "true";
                     } else {
                         echo "false";
                     } ?>]);
+        <?php }?>
+        <?php 
+        /* Use Piano ID accounts as needed */
+        if ($setUsePianoId) { ?>
+            tp.push(["setUsePianoIdUserProvider", true ]);
+        <?php } ?>
+        
         tp.push(["init", function() {
         }]);    
         tp.push(["setDebug", true]);
@@ -138,6 +151,8 @@
                                 </fieldset>
                             </form>
                         <?php
+                    } else if ($setUsePianoId) {
+                        echo "<p class='text-danger'>Publisher uses Piano ID</p>";
                     } else {
                         echo "<p class='text-danger'>Publisher uses their own accounts</p>";
                     } ?>
@@ -209,6 +224,45 @@
                             </div>
                         </fieldset>
                     </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <legend>Debug Help - run in the console of the developer tools in the browser</legend>
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Command</th>
+                          <th>Comment</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">tp;</th>
+                          <td>Checks to make sure that the script is loaded and displays the AID etc</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">tp.userRef</th>
+                          <td>Displays User Ref info</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">tp.customVariables</th>
+                          <td colspan="1">Lists the loaded custom variables</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">tp.init();</th>
+                          <td colspan="1">Initialises the script</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">tp.experience.execute();</th>
+                          <td colspan="1">Executes the composer script</td>
+                        </tr>
+                        <tr>
+                          <th scope="row"></th>
+                          <td colspan="1">In the developer tools, find the Resources, Click on XHR and click on Execute to see all the information about the experiences that are running - meters/split tests etc</td>
+                        </tr>
+                      </tbody>
+                    </table>
                 </td>
             </tr>
             <tr>
